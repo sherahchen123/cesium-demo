@@ -1,24 +1,27 @@
+<!--
+ * @Author: chenxiaoxuan
+ * @Date: 2021-09-07 09:28:03
+ * @LastEditTime: 2021-09-07 09:52:34
+ * @LastEditors: chenxiaoxuan
+ * @Description: 
+-->
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <SceneViewer/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import SceneViewer from './components/SceneViewer'
 export default {
   name: 'App',
-  components: {
-    HelloWorld
-  }
+  components: {SceneViewer}
 }
 </script>
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -26,3 +29,4 @@ export default {
   margin-top: 60px;
 }
 </style>
+
