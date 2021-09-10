@@ -1,31 +1,39 @@
 <template>
   <div class="hello">
+    <div id="backgroundItem" ref="backgroundItem" class="fullSize"></div>
     <div id="cesiumContainer"></div>
     <div class="scene-tool-item">
       <div>
-        <button @click="zoomTo(1)">放大</button>
-        <button @click="zoomTo(0)">缩小</button>
-        <button @click="changeSceneMode">二三维切换</button>
-        <button @click="flyToLocation">指定视图位置</button>
-        <button @click="hideEarth">隐藏地球</button>
-        <button @click="changeSceneColor">改变背景颜色</button>
-        <button @click="customDefineEarthPic">自定义地球图片</button>
-        <button @click="changeSceneBackgroundToOrigin">背景恢复</button>
-        <button @click="addSceneRain">雨</button>
-        <button @click="addSceneSnow">雪</button>
-        <button @click="addSceneFog">雾</button>
-        <button @click="removeSceneWeather">去除天气效果</button>
+        <button class="button-item" @click="zoomTo(1)">放大</button>
+        <button class="button-item" @click="zoomTo(0)">缩小</button>
+        <button class="button-item" @click="changeSceneMode">二三维切换</button>
+        <button class="button-item" @click="flyToLocation">指定视图位置</button>
+        <button class="button-item" @click="hideEarth">隐藏地球</button>
+        <button class="button-item" @click="changeSceneColor">改变背景颜色</button>
+        <button class="button-item" @click="removeCustomDefineEarthPic">取消自定义图片</button>
+        <button class="button-item" @click="changeSceneBackgroundToOrigin">背景恢复</button>
+        <button class="button-item" @click="addSceneRain">雨</button>
+        <button class="button-item" @click="addSceneSnow">雪</button>
+        <button class="button-item" @click="addSceneFog">雾</button>
+        <button class="button-item" @click="removeSceneWeather">去除天气效果</button>
       </div>
     </div>
-
+    <LayerTree :data="treeData"></LayerTree>
   </div>
 </template>
 
 <script>
+import url from './Resources/sky.jpg';
+import { setDora } from '@/utils/doraManager';
+import LayerTree from './Modules/LayerTree';
+
 const Cesium = window.Cesium
 let viewer = null
 export default {
   name: 'SceneViewer',
+  components: {
+    LayerTree
+  },
   props: {
     msg: String
   },
@@ -34,9 +42,12 @@ export default {
       viewType: '三维视图',
       snow: null,
       rain: null,
-      fog: null
+      fog: null,
+      imageURL: url,
+      treeData: []
     }
   },
+  
   mounted () {
     /* eslint-disable */
     this.initCesium()
@@ -46,6 +57,7 @@ export default {
     initCesium() {
       viewer = new Cesium.Viewer('cesiumContainer', {})
       Object.freeze(viewer)
+      setDora({viewer:viewer,Cesium:Cesium})
       viewer.scene.backgroundColor = Cesium.Color.TRANSPARENT
       viewer._cesiumWidget._creditContainer.style.display = 'none' //去掉logo
     },
@@ -103,11 +115,19 @@ export default {
       viewer.scene.skyAtmosphere.show = false //隐藏大气圈
     },
     customDefineEarthPic() {
-      // viewer.imageryLayers.addImageryProvider(
-      //   new Cesium.SingleTileImageryProvider({
-      //     url: './Resources/sky.jpg'
-      //   })
-      // )
+      viewer.imageryLayers.addImageryProvider(
+        new Cesium.SingleTileImageryProvider({
+          url: this.imageURL
+        })
+      )
+    },
+    removeCustomDefineEarthPic() {
+      var layerlist = viewer.imageryLayers._layers
+      layerlist.forEach((item)=>{
+        if (item.isBaseLayer() == false) {
+          item.show = false
+        }
+      })
     },
     addSceneRain() {
       if (this.rain) viewer.scene.postProcessStages.remove(this.rain)
@@ -220,9 +240,21 @@ export default {
   font-family: sans-serif;
 }
 .scene-tool-item {
-  position: absolute;
+  position: relative;
   z-index: 100;
+  top: 590px;
+}
+.fullSize {
+  display: block;
+  position: absolute;
   top: 0;
-  display: inline-block;
+  left: 0;
+  border: none;
+  width: 100%;
+  height: 100%;
+  background-image: url('./Resources/sky.jpg');
+}
+.button-item {
+  margin-left: 10px;
 }
 </style>

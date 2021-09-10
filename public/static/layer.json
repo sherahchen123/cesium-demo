@@ -1,0 +1,458 @@
+[
+
+  {
+    "name": "10米DEM",
+    "theme": "场景地形",
+    "type": "supermap-terrain",
+    "url": "http://52.83.134.236:8090/iserver/services/3D-China/rest/realspace/datas/dem@China",
+    "metadata": {
+      "hasToken": false,
+      "isSct": true
+    }
+  },
+  {
+    "name": "测试模型",
+    "type": "s3m",
+    "url": "http://52.83.134.236:8090/iserver/services/3D-WHScene3D/rest/realspace",
+    "metadata": {
+      "hasToken": false,
+      "tiled": false
+    }
+  },
+  {
+    "name": "地势阶梯图",
+    "type": "wmts",
+    "url": "http://t0.tianditu.com/ter_c/wmts?tk=5d4236a2a06043cd0b0880bbf270c958",
+    "metadata": {
+      "hasToken": false,
+      "layer": "ter",
+      "dpi": 96,
+      "style": "default",
+      "format": "tiles",
+      "tileMatrixSetID": "c",
+      "credit": "天地图地形图服务",
+      "maximumLevel": 14,
+      "3D_zrzy_numberOfLevelZeroTilesX": 2,
+      "tileMatrixLabels": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14"
+      ]
+    },
+    "additionParams": {
+      "baseUrl": "",
+      "style": "",
+      "layer": "",
+      "level": "14",
+      "tbName": "tbName",
+      "id": 3,
+      "guid": "",
+      "fieldMapUrl": ""
+    },
+    "fields": [{ "field": [{ "a": "字段1" }, { "b": "字段2" }] }]
+  },
+  
+  {
+    "name": "长江经济带边界",
+    "type": "esri-rest",
+    "url": "http://161.189.167.206:16080/arcgis/rest/services/CJJJD/%E9%95%BF%E6%B1%9F%E7%BB%8F%E6%B5%8E%E5%B8%A6/MapServer/13",
+    "metadata": {
+      "hasToken": false,
+      "tiled": false
+    }
+  },
+  {
+    "name": "全国2米DEM",
+    "type": "wmts",
+    "url": "http://10.2.29.218:4040/iserver/services/3D-DEM2mhbchina_2018/wmts/realspace/datas/DEM2mhbchina_2018"
+  },
+  {
+    "name": "三调初始时点影像",
+    "type": "esri-rest",
+    "url": "http://161.189.167.206:16080/arcgis/rest/services/CJJJD/XZQH_%E5%85%A8%E5%9B%BD/MapServer/0",
+    "metadata": {
+      "hasToken": false,
+      "tiled": false
+    },
+    "fields": [
+      {
+        "layerId": 0,
+        "field": {
+          "ID": {
+            "CN": "ID值",
+            "values": {}
+          },
+          "QSXZ": {
+            "CN": "权属性质",
+            "values": {
+              "10": "国有土地所有权",
+              "20": "国有土地使用权"
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "全球影像图",
+    "type": "esri-rest",
+    "url": "http://52.82.98.186:6080/arcgis/rest/services/XZQH/XZQH_polygon/MapServer/1",
+    "metadata": {
+      "hasToken": false,
+      "tiled": false
+    }
+  },
+  {
+    "name": "基础地理",
+    "type": "esri-rest",
+    "url": "http://52.82.98.186:6080/arcgis/rest/services/XZQH/XZQH_polygon/MapServer",
+    "metadata": {
+      "hasToken": false,
+      "tiled": false
+    }
+  },
+  {
+    "name": "国家",
+    "type": "esri-rest",
+    "url": "http://161.189.167.206:16080/arcgis/rest/services/CJJJD/XZQH_%E5%85%A8%E5%9B%BD/MapServer/0",
+    "metadata": {
+      "hasToken": false,
+      "tiled": false
+    },
+    "fields": [
+      {
+        "layerId": 0,
+        "field": {
+          "OBJECTID": {
+            "cn": "ID值",
+            "values": {}
+          },
+          "CODE": {
+            "cn": "编码",
+            "values": {}
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "省级",
+    "type": "esri-rest",
+    "url": "http://52.82.98.186:6080/arcgis/rest/services/XZQH/XZQH_polygon/MapServer/1",
+    "metadata": {
+      "hasToken": false,
+      "tiled": false
+    }
+  },
+  {
+    "name": "省级行政区划",
+    "type": "esri-rest",
+    "edition": "dist",
+    "url": "http://52.82.98.186:6080/arcgis/rest/services/XZQH/XZQH_polygon/MapServer/1",
+    "metadata": {
+      "hasToken": false,
+      "tiled": false
+    },
+    "fields": [
+      {
+        "layerId": 1,
+        "field": {
+          "NAME ": {
+            "cn": "名称",
+            "values": {}
+          },
+          "CODE": {
+            "cn": "编码",
+            "values": {}
+          }
+        }
+      }
+    ]
+  },
+  
+  {
+    "name": "市级",
+    "type": "esri-rest",
+    "url": "http://52.82.98.186:6080/arcgis/rest/services/XZQH/XZQH_polygon/MapServer/2",
+    "metadata": {
+      "hasToken": false,
+      "tiled": false
+    },
+    "fields": [
+      {
+        "layerId": 2,
+        "field": {
+          "MJ": {
+            "cn": "面积1",
+            "values": {}
+          },
+          "CODE": {
+            "cn": "编码",
+            "values": {}
+          },
+          "OBJECTID_1": {
+            "cn": "日期",
+            "values": {}
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "县级",
+    "theme": "4",
+    "type": "esri-rest",
+    "url": "http://52.82.98.186:6080/arcgis/rest/services/XZQH/XZQH_polygon/MapServer/3",
+    "metadata": {
+      "hasToken": false,
+      "tiled": false
+    }
+  },
+  {
+    "name": "乡镇",
+    "theme": "5",
+    "type": "esri-rest",
+    "url": "http://52.82.98.186:6080/arcgis/rest/services/XZQH/XZQH_polygon/MapServer/5",
+    "metadata": {
+      "hasToken": false,
+      "tiled": false
+    }
+  },
+  {
+    "name": "地块",
+    "theme": "地块",
+    "type": "esri-rest",
+    "url": "http://52.82.98.186:6080/arcgis/rest/services/XZQH/XZQH_polygon/MapServer/5",
+    "metadata": {
+      "hasToken": false,
+      "tiled": false
+    }
+  },
+  
+  {
+    "name": "三调地类图斑",
+    "theme": "2019年降水量线",
+    "type": "esri-rest",
+    "url": "http://161.189.167.206:16080/arcgis/rest/services/CJJJD/%E9%95%BF%E6%B1%9F%E6%B0%B4%E7%B3%BB%E5%88%86%E5%B8%83/MapServer/0",
+    "metadata": {
+      "hasToken": false,
+      "tiled": false
+    }
+  },
+  
+  {
+    "name": "2019年降水量线",
+    "theme": "2019年降水量线",
+    "type": "esri-rest",
+    "url": "http://161.189.167.206:16080/arcgis/rest/services/CJJJD/%E9%95%BF%E6%B1%9F%E6%B0%B4%E7%B3%BB%E5%88%86%E5%B8%83/MapServer/0",
+    "metadata": {
+      "hasToken": false,
+      "tiled": false
+    }
+  },
+  {
+    "name": "水系流域",
+    "theme": "水系流域",
+    "type": "esri-rest",
+    "url": "http://161.189.167.206:16080/arcgis/rest/services/CJJJD/%E6%B0%B4%E7%B3%BB%E6%B5%81%E5%9F%9F/MapServer/0",
+    "metadata": {
+      "hasToken": false,
+      "tiled": false
+    }
+  },
+  {
+    "name": "长江经济带",
+    "type": "esri-rest",
+    "url": "http://161.189.167.206:16080/arcgis/rest/services/CJJJD/%E9%95%BF%E6%B1%9F%E7%BB%8F%E6%B5%8E%E5%B8%A6/MapServer/14",
+    "metadata": {
+      "hasToken": false,
+      "tiled": true
+    },
+    "fields": [
+      {
+        "layerId": 8,
+        "field": {
+          "NAME": {
+            "cn": "名称"
+          },
+          "CODE": {
+            "cn": "代码",
+            "values": {
+              "530000000000": "云南省",
+              "360000000000": "江西省"
+            }
+          }
+        }
+      },
+      {
+        "layerId": 14,
+        "field": {
+          "NAME": {
+            "cn": "名称"
+          },
+          "CODE": {
+            "cn": "代码",
+            "values": {
+              "411481000000": "永城市",
+              "623026000000": "碌曲县"
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "长江经济带2",
+    "theme": "长江经济带",
+    "type": "esri-rest",
+    "url": "http://161.189.167.206:16080/arcgis/rest/services/CJJJD/%E9%95%BF%E6%B1%9F%E7%BB%8F%E6%B5%8E%E5%B8%A6/MapServer/4",
+    "metadata": {
+      "hasToken": false,
+      "tiled": false
+    }
+  },
+  {
+    "name": "县级分区_自然区",
+    "theme": "长江经济带",
+    "type": "esri-rest",
+    "url": "http://52.82.98.186:6080/arcgis/rest/services/CJKSH/%E4%B8%89%E6%9E%81%E5%A4%9A%E5%9C%88/MapServer/0",
+    "metadata": {
+      "hasToken": false,
+      "tiled": false
+    }
+  },
+  {
+    "name": "世界级城市群",
+    "theme": "长江经济带",
+    "type": "esri-rest",
+    "url": "http://52.82.98.186:6080/arcgis/rest/services/CJKSH/%E4%B8%89%E6%9E%81%E5%A4%9A%E5%9C%88/MapServer/0",
+    "metadata": {
+      "hasToken": false,
+      "tiled": false
+    }
+  },
+  {
+    "name": "大洪水",
+    "theme": "长江经济带",
+    "type": "esri-rest",
+    "url": "http://52.82.98.186:6080/arcgis/rest/services/CJKSH/%E5%A4%A7%E6%B4%AA%E6%B0%B4/MapServer",
+    "metadata": {
+      "hasToken": false,
+      "tiled": false
+    }
+  },
+  {
+    "name": "1月辐射总量",
+    "theme": "1月辐射总量",
+    "type": "esri-rest",
+    "url": "http://161.189.167.206:16080/arcgis/rest/services/CJJJD/%E9%95%BF%E6%B1%9F%E7%BB%8F%E6%B5%8E%E5%B8%A6/MapServer/0",
+    "metadata": {
+      "hasToken": false,
+      "tiled": false
+    }
+  },
+  {
+    "name": "缺水问题范围示意图",
+    "theme": "1月辐射总量",
+    "type": "esri-rest",
+    "url": "http://161.189.167.206:16080/arcgis/rest/services/CJJJD/%E9%95%BF%E6%B1%9F%E7%BB%8F%E6%B5%8E%E5%B8%A6/MapServer/0",
+    "metadata": {
+      "hasToken": false,
+      "tiled": false
+    }
+  },
+  
+  {
+    "name": "2月辐射总量",
+    "theme": "2月辐射总量",
+    "type": "esri-rest",
+    "url": "http://161.189.167.206:16080/arcgis/rest/services/CJJJD/%E4%B8%89%E6%9E%81%E5%A4%9A%E5%9C%88/MapServer",
+    "metadata": {
+      "hasToken": false,
+      "tiled": false
+    }
+  },
+  {
+    "name": "3月辐射总量",
+    "theme": "3月辐射总量",
+    "type": "esri-rest",
+    "url": "http://161.189.167.206:16080/arcgis/rest/services/CJJJD/%E4%B8%89%E6%9E%81%E5%A4%9A%E5%9C%88/MapServer",
+    "metadata": {
+      "hasToken": false,
+      "tiled": false
+    }
+  },
+  {
+    "name": "林地",
+    "theme": "林地",
+    "type": "esri-rest",
+    "url": "http://161.189.167.206:16080/arcgis/rest/services/CJJJD/MyMapService/MapServer/0",
+    "metadata": {
+      "hasToken": false,
+      "tiled": false
+    }
+  },
+  {
+    "name": "公司地形",
+    "type": "supermap-terrain",
+    "url": "http://52.83.134.236:8090/iserver/services/3D-China/rest/realspace/datas/dem@China",
+    "metadata": {
+      "hasToken": false,
+      "isSct": true
+    }
+  },
+  {
+    "name": "行政区划点",
+    "type": "esri-rest",
+    "url": "http://161.189.167.206:16080/arcgis/rest/services/CJJJD/XZQHXR/MapServer/0",
+    "metadata": {
+      "hasToken": false,
+      "tiled": false
+    }
+  },
+  {
+    "name": "人口迁徙",
+    "type": "esri-rest",
+  
+    "url": "http://161.189.167.206:16080/arcgis/rest/services/CJJJD/OD/MapServer/0",
+    "metadata": {
+      "hasToken": false,
+      "rkcr": "/XZQH/XZQH_point/MapServer/2"
+    }
+  },
+  {
+    "name": "规划单元",
+    "type": "esri-rest",
+    "url": "http://161.189.167.206:16080/arcgis/rest/services/CJJJD/%E5%9C%B0%E5%9D%97%E8%8C%83%E5%9B%B4/MapServer/0",
+    "metadata": {
+      "hasToken": false,
+      "tiled": false
+    }
+  },{
+    "name": "dsm",
+    "type": "wmts-bil",
+    "theme": "场景地形",
+    "url": "http://10.8.70.7:8066/wmts/bil/DSM_10_China",
+    "metadata": {
+      "hasToken": false,
+      "extent": {
+        "startX": 96.37843966000008,
+        "startY": 21.078519123000035,
+        "endX": 123.41863453000008,
+        "endY": 35.26962456100006
+      }
+    }
+  }
+  ]
+  
