@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml>
+  <Document>
+    <Placemark>
+      <name>科大</name>
+      <visibility>1</visibility>
+      <Polygon>
+        <altitudeMode>clampToGround</altitudeMode>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>
+              117.246039988,31.8432507837,0
+              117.2462949686,31.8369115232,0
+              117.2532458381,31.8370240187,0
+              117.2543956701,31.840919826,0
+              117.2544047996,31.8433808371,0
+              117.2460759927,31.8432510265,0
+              117.246039988,31.8432507837,0
+            </coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+  </Document>
+</kml>
+
