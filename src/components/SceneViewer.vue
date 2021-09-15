@@ -26,6 +26,7 @@
 import url from './Resources/sky.jpg';
 import { setDora } from '@/utils/doraManager';
 import LayerTree from './Modules/LayerTree';
+import { getLayerInfo } from "@/api/index.js";
 
 const Cesium = window.Cesium
 let viewer = null
@@ -60,6 +61,22 @@ export default {
       setDora({viewer:viewer,Cesium:Cesium})
       viewer.scene.backgroundColor = Cesium.Color.TRANSPARENT
       viewer._cesiumWidget._creditContainer.style.display = 'none' //去掉logo
+
+      this.getLayerTree();
+    },
+    async getLayerTree() {
+      await getLayerInfo().then(res => {
+        let originData = [];
+        for (const item of res) {
+          originData.push({
+            label:item.name,
+            layerInfo:item,
+            children:[]
+          })
+        }
+        this.treeData = originData;
+      })
+      .catch((err) => { throw new Error(err.message); });
     },
     zoomTo(num) {
       if (num) {
