@@ -1,17 +1,18 @@
 /*
  * @Author: chenxiaoxuan
  * @Date: 2021-09-15 09:33:22
- * @LastEditTime: 2021-09-15 14:02:32
+ * @LastEditTime: 2021-09-17 09:44:09
  * @LastEditors: chenxiaoxuan
  * @Description: 
  */
 import axios from "axios";
-import Hjson from "hjson";
+// import Hjson from "hjson";
 // import HttpRequest from "./HttpRequest";
-export async function getLayerInfo() {
+export const getLayerInfo = async () =>{
   try {
-    const res =  await axios.get("/static/layer.hjson").catch((err) => { throw new Error(err.message); });
-    return Hjson.parse(res.data);
+    const res =  await axios.get("../../static/layer.hjson");
+    console.log(res.data);
+    return (res.data);
     // const res = await HttpRequest.get("/static/layer.hjson", {
     //   // 阻止 axios 自动 JSON.parse
     //   // refer https://github.com/axios/axios/issues/907

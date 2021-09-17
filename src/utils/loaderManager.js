@@ -204,7 +204,7 @@ export const showLayerByName = layerCfg => {
         } else {
           params.layers = 0;
         }
-        const layer = loadImageItem(node.type, params);
+        const layer = loadImageItem(dora,node.type, params);
         if (layer && node.type !== 'supermap-terrain' && node.type !== 'sfs-terrain') {
           layer[name] = name;
           resolve(layer);

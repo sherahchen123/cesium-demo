@@ -63,10 +63,12 @@ export default {
       viewer._cesiumWidget._creditContainer.style.display = 'none' //去掉logo
 
       this.getLayerTree();
+      // console.log(layer1)
     },
     async getLayerTree() {
-      await getLayerInfo().then(res => {
+     await getLayerInfo().then(res => {
         let originData = [];
+        console.log(res)
         for (const item of res) {
           originData.push({
             label:item.name,
