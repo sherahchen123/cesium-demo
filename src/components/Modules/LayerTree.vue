@@ -1,7 +1,7 @@
 <!--
  * @Author: chenxiaoxuan
  * @Date: 2021-09-10 13:08:47
- * @LastEditTime: 2021-09-10 13:21:13
+ * @LastEditTime: 2021-09-17 16:02:30
  * @LastEditors: chenxiaoxuan
  * @Description: 
 -->
@@ -80,7 +80,7 @@ export default {
   position:absolute;
   top: 0px;
   left: 0px;
-  height: 600px;
+  height: 100%;
   overflow: auto;
   .el-tree {
     background: #3d5469;
