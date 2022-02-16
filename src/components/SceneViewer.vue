@@ -1,7 +1,7 @@
 <!--
  * @Author: chenxiaoxuan
  * @Date: 2021-09-07 09:28:03
- * @LastEditTime: 2022-01-17 15:17:21
+ * @LastEditTime: 2022-02-16 09:33:16
  * @LastEditors: chenxiaoxuan
  * @Description: 
 -->
@@ -11,6 +11,7 @@
     <div id="cesiumContainer"></div>
     <basic-tools></basic-tools>
     <LayerTree :data="treeData"></LayerTree>
+    <navigation></navigation>
     <scale></scale>
   </div>
 </template>
@@ -20,6 +21,7 @@ import { setDora } from '@/utils/doraManager';
 import LayerTree from './Modules/LayerTree';
 import { getLayerInfo } from "@/api/index.js";
 import BasicTools from './Modules/BasicTools';
+import Navigation from './Modules/ToolBox/Navigation';
 import Scale from './Modules/Scale';
 
 const Cesium = window.Cesium
@@ -29,6 +31,7 @@ export default {
   components: {
     LayerTree,
     BasicTools,
+    Navigation,
     Scale
   },
   props: {
