@@ -1,7 +1,7 @@
 <!--
  * @Author: chenxiaoxuan
  * @Date: 2021-09-07 09:28:03
- * @LastEditTime: 2022-02-16 09:33:16
+ * @LastEditTime: 2022-03-01 13:12:51
  * @LastEditors: chenxiaoxuan
  * @Description: 
 -->
@@ -11,7 +11,7 @@
     <div id="cesiumContainer"></div>
     <basic-tools></basic-tools>
     <LayerTree :data="treeData"></LayerTree>
-    <navigation></navigation>
+    <navigation :tools="tools"></navigation>
     <scale></scale>
   </div>
 </template>
@@ -23,6 +23,7 @@ import { getLayerInfo } from "@/api/index.js";
 import BasicTools from './Modules/BasicTools';
 import Navigation from './Modules/ToolBox/Navigation';
 import Scale from './Modules/Scale';
+import { getSpaceToolsConfig } from "@/api/index.js";
 
 const Cesium = window.Cesium
 let viewer = null
@@ -40,7 +41,8 @@ export default {
   data() {
     return {
       dora: null,
-      treeData: []
+      treeData: [],
+      tools: []
     }
   },
   
@@ -61,6 +63,7 @@ export default {
       }
       setDora(Dora)
       this.getLayerTree();
+      this.getConfig();
       // console.log(layer1)
     },
     async getLayerTree() {
@@ -75,6 +78,13 @@ export default {
           })
         }
         this.treeData = originData;
+      })
+      .catch((err) => { throw new Error(err.message); });
+    },
+    async getConfig() {
+      await getSpaceToolsConfig().then(res => {
+        console.log(res)
+        this.tools = res;
       })
       .catch((err) => { throw new Error(err.message); });
     }

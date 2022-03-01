@@ -1,0 +1,24 @@
+[
+  {
+    "label": "三维分析工具箱",
+    "id": "1",
+    "url": "/",
+    "children": [
+      {
+        "label": "数据查询",
+        "code": "1",
+        "url": "/DataQuery/index"
+      },
+      {
+        "label": "测量",
+        "code": "2",
+        "url": "/Measure/index"
+      },
+      {
+        "label": "标注",
+        "code": "3",
+        "url": "/Remark/index"
+      }
+    ]
+  }
+]

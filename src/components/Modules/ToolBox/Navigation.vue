@@ -1,7 +1,7 @@
 <!--
  * @Author: chenxiaoxuan
  * @Date: 2022-01-17 13:38:14
- * @LastEditTime: 2022-02-16 16:03:28
+ * @LastEditTime: 2022-03-01 13:09:33
  * @LastEditors: chenxiaoxuan
  * @Description: 
 -->
@@ -33,36 +33,20 @@
 </template>
 
 <script>
-import { dora } from '@/utils/doraManager'
+import { dora } from '@/utils/doraManager';
 
 export default {
   data() {
     return {
-      tools: [
-        {
-          label: "三维分析工具箱",
-          id: 1,
-          url: "/",
-          children: [
-            {
-              label: "数据查询",
-              code: 1,
-              url: "/DataQuery/index"
-            },
-            {
-              label: "测量",
-              code: 2,
-              url: "/Measure/index"
-            },
-            {
-              label: "标注",
-              code: 3,
-              url: "/Remark/index"
-            },
-          ]
-        }
-      ],
       collapsed: false
+    }
+  },
+  props: {
+    tools:{
+      type:Array,
+      default:()=>{
+        return []
+      }
     }
   },
   components: {
@@ -73,6 +57,7 @@ export default {
       dora: dora
     };
   },
+  beforeCreate() {},
   mounted() {},
   methods: {
     handleOpen() {},
