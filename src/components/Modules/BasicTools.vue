@@ -38,7 +38,40 @@ export default {
       
     }
   },
-  mounted() {},
+  mounted() {
+    // 来自部里三维优化配置
+    dora.viewer.scene.globe.enableLighting = true;
+    dora.viewer.scene.hdrEnabled = false;
+    dora.viewer.scene.globe.showGroundAtmosphere = false;
+    dora.viewer.scene.globe.maximumScreenSpaceError = 2;
+    dora.viewer.scene.globe._surface.preloadAncestors = false;
+    // dora.viewer.scene.fog.enabled = false;
+    const endTime = new Date();
+    endTime.setHours(Number(12));
+    dora.viewer.clock.currentTime = dora.cesium.JulianDate.fromDate(endTime);
+    dora.viewer.clock.multiplier = 1;
+    // 移除左键双击功能
+    dora.viewer.cesiumWidget.screenSpaceEventHandler.removeInputAction(
+      dora.cesium.ScreenSpaceEventType.LEFT_DOUBLE_CLICK
+    );
+    //提高清晰度
+    dora.viewer.scene.postProcessStages.fxaa.enabled = false;
+    dora.viewer.scene.postProcessStages.fxaa._enabled = false;
+    dora.viewer._cesiumWidget._supportsImageRenderingPixelated =
+    dora.cesium.FeatureDetection.supportsImageRenderingPixelated();
+    dora.viewer._cesiumWidget._forceResize = true;
+    if (
+      dora.cesium.FeatureDetection.supportsImageRenderingPixelated()
+    ) {
+      let vtxf_dpr = window.devicePixelRatio;
+      // 适度降低分辨率
+      while (vtxf_dpr >= 2.0) {
+        vtxf_dpr /= 2.0;
+      }
+      //alert(dpr);
+      dora.viewer.resolutionScale = vtxf_dpr;
+    }
+  },
   methods: {
     zoomTo(num) {
       if (num) {
