@@ -1,7 +1,7 @@
 <!--
  * @Author: chenxiaoxuan
  * @Date: 2022-01-17 13:35:46
- * @LastEditTime: 2022-01-17 16:59:07
+ * @LastEditTime: 2022-03-02 11:32:04
  * @LastEditors: chenxiaoxuan
  * @Description: 
 -->
@@ -34,6 +34,9 @@ export default {
         const { value } = this.updateScale(dora, 4);
         this.scaleValue = value || "N/A";
       }, dora.Cesium.ScreenSpaceEventType.WHEEL);
+      handler.setInputAction(function(click){
+        console.log('中键按下事件：', click.position);     
+      },dora.Cesium.ScreenSpaceEventType.MIDDLE_DOWN);
     })
   },
   methods: {
