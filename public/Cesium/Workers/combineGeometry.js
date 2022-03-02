@@ -20,16 +20,4 @@
  * Portions licensed separately.
  * See https://github.com/CesiumGS/cesium/blob/master/LICENSE.md for full licensing details.
  */
-define(['./when-8d13db60', './Check-70bec281', './Math-61ede240', './Cartographic-f2a06374', './Cartesian4-5af5bb24', './createTaskProcessorWorker', './Cartesian2-16a61632', './BoundingSphere-356f49c6', './RuntimeError-ba10bc3e', './WebGLConstants-4c11ee5f', './ComponentDatatype-5862616f', './GeometryAttribute-1e248a71', './PrimitiveType-97893bc7', './FeatureDetection-7bd32c34', './Transforms-84e51c18', './buildModuleUrl-e7952659', './GeometryAttributes-aacecde6', './AttributeCompression-c177f997', './GeometryPipeline-963ea670', './EncodedCartesian3-a07a0929', './IndexDatatype-9435b55f', './IntersectionTests-d118a357', './Plane-29aa8f4d', './PrimitivePipeline-fae86eea', './WebMercatorProjection-9a70654e'], function (when, Check, _Math, Cartographic, Cartesian4, createTaskProcessorWorker, Cartesian2, BoundingSphere, RuntimeError, WebGLConstants, ComponentDatatype, GeometryAttribute, PrimitiveType, FeatureDetection, Transforms, buildModuleUrl, GeometryAttributes, AttributeCompression, GeometryPipeline, EncodedCartesian3, IndexDatatype, IntersectionTests, Plane, PrimitivePipeline, WebMercatorProjection) { 'use strict';
-
-    function combineGeometry(packedParameters, transferableObjects) {
-        var parameters = PrimitivePipeline.PrimitivePipeline.unpackCombineGeometryParameters(packedParameters);
-        var results = PrimitivePipeline.PrimitivePipeline.combineGeometry(parameters);
-        return PrimitivePipeline.PrimitivePipeline.packCombineGeometryResults(results, transferableObjects);
-    }
-
-    var combineGeometry$1 = createTaskProcessorWorker(combineGeometry);
-
-    return combineGeometry$1;
-
-});
+define(["./when-8d13db60","./Check-70bec281","./Math-61ede240","./Cartographic-f27b0939","./Cartesian2-09435a6c","./BoundingSphere-c409f092","./Cartesian4-5af5bb24","./RuntimeError-ba10bc3e","./WebGLConstants-4c11ee5f","./ComponentDatatype-5862616f","./GeometryAttribute-2243653a","./PrimitiveType-97893bc7","./FeatureDetection-7bd32c34","./Transforms-1509c877","./buildModuleUrl-392763e2","./GeometryAttributes-aacecde6","./AttributeCompression-75ce15eb","./GeometryPipeline-8e55e413","./EncodedCartesian3-87cd0c1f","./IndexDatatype-9435b55f","./IntersectionTests-dbfba52c","./Plane-2bcb9154","./PrimitivePipeline-b43a6119","./WebMercatorProjection-bc9aa7fe","./createTaskProcessorWorker"],function(e,t,i,r,n,a,c,o,b,m,s,d,p,u,P,f,l,C,y,G,v,h,k,T,A){return A(function(e,t){var i=k.PrimitivePipeline.unpackCombineGeometryParameters(e),r=k.PrimitivePipeline.combineGeometry(i);return k.PrimitivePipeline.packCombineGeometryResults(r,t)})});

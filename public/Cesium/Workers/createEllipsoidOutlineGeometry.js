@@ -20,15 +20,4 @@
  * Portions licensed separately.
  * See https://github.com/CesiumGS/cesium/blob/master/LICENSE.md for full licensing details.
  */
-define(['./when-8d13db60', './Check-70bec281', './Math-61ede240', './Cartographic-f2a06374', './Cartesian4-5af5bb24', './Cartesian2-16a61632', './BoundingSphere-356f49c6', './RuntimeError-ba10bc3e', './WebGLConstants-4c11ee5f', './ComponentDatatype-5862616f', './GeometryAttribute-1e248a71', './PrimitiveType-97893bc7', './FeatureDetection-7bd32c34', './Transforms-84e51c18', './buildModuleUrl-e7952659', './GeometryAttributes-aacecde6', './IndexDatatype-9435b55f', './arrayFill-9766fb2e', './GeometryOffsetAttribute-999fc023', './EllipsoidOutlineGeometry-50a4cfe1'], function (when, Check, _Math, Cartographic, Cartesian4, Cartesian2, BoundingSphere, RuntimeError, WebGLConstants, ComponentDatatype, GeometryAttribute, PrimitiveType, FeatureDetection, Transforms, buildModuleUrl, GeometryAttributes, IndexDatatype, arrayFill, GeometryOffsetAttribute, EllipsoidOutlineGeometry) { 'use strict';
-
-    function createEllipsoidOutlineGeometry(ellipsoidGeometry, offset) {
-        if (when.defined(ellipsoidGeometry.buffer)) {
-            ellipsoidGeometry = EllipsoidOutlineGeometry.EllipsoidOutlineGeometry.unpack(ellipsoidGeometry, offset);
-        }
-        return EllipsoidOutlineGeometry.EllipsoidOutlineGeometry.createGeometry(ellipsoidGeometry);
-    }
-
-    return createEllipsoidOutlineGeometry;
-
-});
+define(["./when-8d13db60","./Check-70bec281","./Math-61ede240","./Cartographic-f27b0939","./Cartesian2-09435a6c","./BoundingSphere-c409f092","./Cartesian4-5af5bb24","./RuntimeError-ba10bc3e","./WebGLConstants-4c11ee5f","./ComponentDatatype-5862616f","./GeometryAttribute-2243653a","./PrimitiveType-97893bc7","./FeatureDetection-7bd32c34","./Transforms-1509c877","./buildModuleUrl-392763e2","./GeometryAttributes-aacecde6","./IndexDatatype-9435b55f","./arrayFill-9766fb2e","./GeometryOffsetAttribute-999fc023","./EllipsoidOutlineGeometry-dcd209b1"],function(r,e,t,i,n,a,o,c,b,d,f,u,l,m,s,y,p,G,C,h){return function(e,t){return r.defined(e.buffer)&&(e=h.EllipsoidOutlineGeometry.unpack(e,t)),h.EllipsoidOutlineGeometry.createGeometry(e)}});
