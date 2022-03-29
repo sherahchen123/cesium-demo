@@ -1,7 +1,7 @@
 <!--
  * @Author: chenxiaoxuan
  * @Date: 2022-01-17 13:38:14
- * @LastEditTime: 2022-03-01 13:09:33
+ * @LastEditTime: 2022-03-29 16:14:34
  * @LastEditors: chenxiaoxuan
  * @Description: 
 -->
@@ -24,16 +24,18 @@
         <template slot="title"><span>{{tool.label}}</span></template>
         <div v-if="tool.children">
             <div v-for="(subitem, subindex) in tool.children" :key="subindex">
-              <el-menu-item style="list-style-type: none" :index="subitem.code" @click="handleOpenTool(subitem.code)">{{subitem.label}}</el-menu-item>
+              <el-menu-item style="list-style-type: none" :index="subitem.code" @click="handleOpenTool(subitem)">{{subitem.label}}</el-menu-item>
             </div>
         </div>
       </el-submenu>
     </el-menu>
+    <remark></remark>
   </div>
 </template>
 
 <script>
 import { dora } from '@/utils/doraManager';
+import Remark from './Remark/Remark';
 
 export default {
   data() {
@@ -50,7 +52,7 @@ export default {
     }
   },
   components: {
-    
+    Remark
   },
   provide() {
     return {
@@ -62,8 +64,9 @@ export default {
   methods: {
     handleOpen() {},
     handleClose() {},
-    handleOpenTool(code) {
-      console.log(code);
+    handleOpenTool(subitem) {
+      console.log(subitem.code);
+      
     }
   }
 }

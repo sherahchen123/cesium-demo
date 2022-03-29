@@ -1,7 +1,7 @@
 /*
  * @Author: chenxiaoxuan
  * @Date: 2021-09-15 09:33:22
- * @LastEditTime: 2022-03-01 10:50:12
+ * @LastEditTime: 2022-03-07 15:25:51
  * @LastEditors: chenxiaoxuan
  * @Description: 
  */
@@ -32,6 +32,34 @@ export const getLayerInfo = async () =>{
 export const getSpaceToolsConfig = async () => {
   try {
     const res = await axios.get("../../static/spaceTools.hjson");
+    // console.log(res.data);
+    return (res.data);
+  } catch(err) {
+    throw new Error(err.message);
+  }
+};
+
+export const getSuperMapPointsJson = async () => {
+  try {
+    const res = await axios.get("../../static/supermapData/points.hjson");
+    // console.log(res.data);
+    return (res.data);
+  } catch(err) {
+    throw new Error(err.message);
+  }
+};
+export const getSuperMapPolylineJson = async () => {
+  try {
+    const res = await axios.get("../../static/supermapData/polyline.hjson");
+    // console.log(res.data);
+    return (res.data);
+  } catch(err) {
+    throw new Error(err.message);
+  }
+};
+export const getSuperMapPolygonJson = async () => {
+  try {
+    const res = await axios.get("../../static/supermapData/polygon.hjson");
     // console.log(res.data);
     return (res.data);
   } catch(err) {

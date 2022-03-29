@@ -1,0 +1,189 @@
+<!--
+ * @Author: TYW
+ * @Date: 2022-01-18 11:15:36
+ * @LastEditTime: 2022-03-04 17:10:18
+ * @LastEditors: chenxiaoxuan
+ * @Description: 
+-->
+<!--
+ * @Author: TYW
+ * @Date: 2021-04-30 12:09:08
+ * @LastEditTime: 2022-01-18 11:15:25
+ * @LastEditors: TYW
+ * @Description: 
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="renderer" content="webkit" />
+    <meta
+      name="viewport"
+      content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=no"
+    />
+    <title>BimAngle.com - Trial version</title>
+    <script src="./Cesium/Cesium.js"></script>
+    <script type="text/javascript" src="./jquery/jquery-1.9.1.min.js"></script>
+    <script src="./js/require.min.js"></script>
+    <link
+      href="./Cesium/Widgets/widgets.css"
+      rel="stylesheet"
+    />
+    <style>
+      @import url(../lib-cesium/Widgets/widgets.css);
+
+      html,
+      body,
+      #allc,
+      #cesiumContainer {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+      }
+      #csfly {
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 10;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="allc">
+      <div id="cesiumContainer"></div>
+      <div id="csfly">
+        <button onclick="flyFunc()">开始飞行</button>
+      </div>
+    </div>
+
+    <script>
+      const ALLOW_3D_TILES_INSPECTOR = false;
+      const ALLOW_NODE_PROPS = true;
+    </script>
+    <script>
+      var imageryViewModels = [];
+      var tiandituyx = new Cesium.ProviderViewModel({
+        name: '天地图影像',
+        tooltip: '天地图影像及中文标注数据',
+        iconUrl: './sampleData/images/tianditu.jpg',
+        creationFunction: function () {
+          var mapsources = [];
+          var yx = new Cesium.WebMapTileServiceImageryProvider({
+            url: 'http://t0.tianditu.com/img_w/wmts?service=wmts&request=GetTile&version=1.0.0&LAYER=img&tileMatrixSet=w&TileMatrix={TileMatrix}&TileRow={TileRow}&TileCol={TileCol}&style=default&format=tiles&tk=8b207a527da69c7a32f636801fa194d4',
+            layer: 'tdtBasicLayer',
+            style: 'default',
+            format: 'image/jpeg',
+            tileMatrixSetID: 'GoogleMapsCompatible',
+            show: false
+          });
+          var jd = new Cesium.WebMapTileServiceImageryProvider({
+            url: 'http://t0.tianditu.gov.cn/cia_w/wmts?service=wmts&request=GetTile&version=1.0.0&LAYER=cia&tileMatrixSet=w&TileMatrix={TileMatrix}&TileRow={TileRow}&TileCol={TileCol}&style=default&format=tiles&tk=8b207a527da69c7a32f636801fa194d4',
+            layer: 'tiandituImgMarker',
+            style: 'default',
+            format: 'image/jpeg',
+            tileMatrixSetID: 'tiandituImgMarker',
+            show: true,
+            maximumLevel: 16
+          });
+          mapsources.push(yx, jd);
+          return mapsources;
+        }
+      });
+      imageryViewModels.push(tiandituyx);
+      var tianditujd = new Cesium.ProviderViewModel({
+        name: '天地图街道',
+        tooltip: '天地图街道数据',
+        iconUrl: './sampleData/images/tianditu.jpg',
+        creationFunction: function () {
+          return new Cesium.WebMapTileServiceImageryProvider({
+            url: 'http://t0.tianditu.com/vec_w/wmts?service=wmts&request=GetTile&version=1.0.0&LAYER=vec&tileMatrixSet=w&TileMatrix={TileMatrix}&TileRow={TileRow}&TileCol={TileCol}&style=default&format=tiles&tk=8b207a527da69c7a32f636801fa194d4',
+            layer: 'tdtVecBasicLayer',
+            style: 'default',
+            format: 'image/jpeg',
+            tileMatrixSetID: 'GoogleMapsCompatible',
+            show: false
+          });
+        }
+      });
+      imageryViewModels.push(tianditujd);
+      var tiandituzj = new Cesium.ProviderViewModel({
+        name: '天地图中文标注',
+        tooltip: '天地图中文标注数据',
+        iconUrl: './sampleData/images/tianditu.jpg',
+        creationFunction: function () {
+          return new Cesium.WebMapTileServiceImageryProvider({
+            url: 'http://t0.tianditu.gov.cn/cia_w/wmts?service=wmts&request=GetTile&version=1.0.0&LAYER=cia&tileMatrixSet=w&TileMatrix={TileMatrix}&TileRow={TileRow}&TileCol={TileCol}&style=default&format=tiles&tk=8b207a527da69c7a32f636801fa194d4',
+            layer: 'tiandituImgMarker',
+            style: 'default',
+            format: 'image/jpeg',
+            tileMatrixSetID: 'tiandituImgMarker',
+            show: true,
+            maximumLevel: 16
+          });
+        }
+      });
+      imageryViewModels.push(tiandituzj);
+      var tianditugjx = new Cesium.ProviderViewModel({
+        name: '天地图国界线',
+        tooltip: '天地图国界线数据',
+        iconUrl: './sampleData/images/tianditu.jpg',
+        creationFunction: function () {
+          return new Cesium.WebMapTileServiceImageryProvider({
+            url: 'https://t0.tianditu.gov.cn/ibo_w/wmts?service=wmts&request=GetTile&version=1.0.0&LAYER=ibo&tileMatrixSet=w&TileMatrix={TileMatrix}&TileRow={TileRow}&TileCol={TileCol}&style=default&format=tiles&tk=8b207a527da69c7a32f636801fa194d4',
+            layer: 'tiandituImg',
+            style: 'default',
+            format: 'image/jpeg',
+            tileMatrixSetID: 'tiandituImg',
+            show: true,
+            maximumLevel: 16
+          });
+        }
+      });
+      imageryViewModels.push(tianditugjx);
+      var viewer = new Cesium.Viewer('cesiumContainer', {
+        baseLayerPicker: true, //是否显示图层选择器
+        imageryProviderViewModels: imageryViewModels,
+        selectedImageryProviderViewModel: tianditujd
+      });
+      viewer._cesiumWidget._creditContainer.style.display = 'none';
+      if (ALLOW_3D_TILES_INSPECTOR) {
+        viewer.extend(Cesium.viewerCesium3DTilesInspectorMixin);
+        var inspectorViewModel = viewer.cesium3DTilesInspector.viewModel;
+      }
+
+      // // var urlA = "http://10.20.103.120:9019/QX_SYQ/fds/GetData/tileset.json";
+      // //var urlA = "./CesiumLabData20210526/tileset.json";
+      // var urlA = "http://52.83.134.236:8090/iserver/services/map-BIM/rest/maps/%E5%B0%8F%E5%88%AB%E5%A2%85"
+      //   // 'http://192.168.1.228:30007/iserver/services/map-arcgis-ZJGMN/rest/maps/%E5%9B%BE%E5%B1%82'; // "http://192.168.1.228:30007/iserver/services/3D-ThreeDTilesCache-tileset/rest/realspace/datas/tileset/config"; // "http://192.168.1.228:30007/iserver/services/3D-ThreeDTilesCache-tileset/rest/realspace/datas/tileset/config" // "./11-12 3Dtiles（倾斜摄影）/tileset.json" // './裁切数据转3dt/tileset.json';
+      // // let layer = new S3MTilesLayer({
+      // //     context : scene._context,
+      // //     url: './3DTiles处理加载显示对比/3dtiles2s3m测试/tilesetS3MB.scp'
+      // // });
+
+      // const layer = viewer.imageryLayers.addImageryProvider(
+      //   new Cesium.SuperMapImageryProvider({
+      //     url: urlA,
+      //     packingRequest: 1
+      //   })
+      // );
+      // viewer.flyTo(layer);
+      // const layers = viewer.scene.open(
+      //   'http://52.83.134.236:8090/iserver/services/3D-WeiHaiChengShiSheJi-CS/rest/realspace',
+      //   '威海城市设计',
+      //   {
+      //     autoSetView: false
+      //   }
+      // );
+      // // var tileset = scene.primitives.add(layer);
+
+      // Cesium.Ellipsoid.WGS84 = Object.freeze(
+      //   new Cesium.Ellipsoid(6378137, 6378137, 6356752.3142451793)
+      // );
+
+     
+    </script>
+  </body>
+</html>

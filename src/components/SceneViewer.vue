@@ -1,7 +1,7 @@
 <!--
  * @Author: chenxiaoxuan
  * @Date: 2021-09-07 09:28:03
- * @LastEditTime: 2022-03-02 16:58:33
+ * @LastEditTime: 2022-03-24 17:26:19
  * @LastEditors: chenxiaoxuan
  * @Description: 
 -->
@@ -25,7 +25,7 @@ import Navigation from './Modules/ToolBox/Navigation';
 import Scale from './Modules/Scale';
 import { getSpaceToolsConfig } from "@/api/index.js";
 
-const Cesium = window.Cesium
+let Cesium = window.Cesium
 let viewer = null
 export default {
   name: 'SceneViewer',
@@ -54,7 +54,7 @@ export default {
   methods: {
     initCesium() {
       viewer = new Cesium.Viewer('cesiumContainer', {})
-      Object.freeze(viewer)
+      // Object.freeze(viewer)
       viewer.scene.backgroundColor = Cesium.Color.TRANSPARENT
       viewer._cesiumWidget._creditContainer.style.display = 'none' //去掉logo
       let Dora = {
@@ -64,6 +64,9 @@ export default {
       setDora(Dora)
       this.getLayerTree();
       this.getConfig();
+      let str = "http://52.82.98.186:6080/arcgis/rest/services/YZT/YX2014/MapServer";
+      let num = str.indexOf("MapServer")
+      console.log(num)
       // console.log(layer1)
     },
     async getLayerTree() {

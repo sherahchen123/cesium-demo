@@ -1,0 +1,35 @@
+{
+  "stringID":null,
+  "fieldNames":[
+    "SMID",
+    "SMUSERID",
+    "SMGEOMETRY",
+    "ID"
+  ],
+  "geometry":{
+    "center":
+      {
+        "x":121.8919772141267,
+        "y":37.49490703989215
+      },
+    "parts":[1],
+    "style":null,
+    "prjCoordSys":null,
+    "id":1,
+    "type":"POINT",
+    "partTopo":null,
+    "points":[
+      {
+        "x":121.8919772141267,
+        "y":37.49490703989215
+      }
+    ]
+  },
+  "fieldValues":[
+    "1",
+    "0",
+    "",
+    "0"
+  ],
+  "ID":1
+}

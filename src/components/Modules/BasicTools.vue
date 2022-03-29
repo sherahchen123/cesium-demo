@@ -71,9 +71,11 @@ export default {
       //alert(dpr);
       dora.viewer.resolutionScale = vtxf_dpr;
     }
+    Object.freeze(dora.viewer)
   },
   methods: {
     zoomTo(num) {
+      console.log("放大");
       if (num) {
         dora.viewer.camera.zoomIn(100000)
       } else {
