@@ -1,7 +1,7 @@
 <!--
  * @Author: chenxiaoxuan
  * @Date: 2022-03-29 15:04:19
- * @LastEditTime: 2022-03-29 16:36:45
+ * @LastEditTime: 2022-04-06 16:21:54
  * @LastEditors: chenxiaoxuan
  * @Description: 
 -->
@@ -13,6 +13,7 @@
     <button @click="billboard">billboard</button>
     <button @click="model">model</button>
     <button @click="polyline">polyline</button>
+    <button @click="entityWithMaterial">entityWithMaterial</button>
   </div>  
 </template>
 
@@ -24,6 +25,7 @@ import {
   creatBillboard,
   creatModel,
   creatPolyline,
+  createBoxWithImageMaterial
 } from "@/utils/entity.js";
 
 export default {
@@ -43,6 +45,7 @@ export default {
         uri: "./static/xiaofangche2.gltf",
         scale: 1,
       },
+      imageMaterial: '@/components/Resources/blue.png'
     }
   },
   mounted() {
@@ -95,6 +98,10 @@ export default {
         ...this.pointStyle,
         ...this.modelStyle,
       });
+    },
+    entityWithMaterial() {
+      const en = createBoxWithImageMaterial(dora, this.imageMaterial);
+      dora.viewer.flyTo(en);
     }
   }
 }
