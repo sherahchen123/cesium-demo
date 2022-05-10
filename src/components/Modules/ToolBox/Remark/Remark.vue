@@ -1,7 +1,7 @@
 <!--
  * @Author: chenxiaoxuan
  * @Date: 2022-03-29 15:04:19
- * @LastEditTime: 2022-04-06 16:21:54
+ * @LastEditTime: 2022-05-10 15:11:34
  * @LastEditors: chenxiaoxuan
  * @Description: 
 -->
@@ -45,7 +45,7 @@ export default {
         uri: "./static/xiaofangche2.gltf",
         scale: 1,
       },
-      imageMaterial: '@/components/Resources/blue.png'
+      imageMaterial: "@/components/Resources/blue.png"
     }
   },
   mounted() {

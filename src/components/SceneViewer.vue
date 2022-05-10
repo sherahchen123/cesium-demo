@@ -1,7 +1,7 @@
 <!--
  * @Author: chenxiaoxuan
  * @Date: 2021-09-07 09:28:03
- * @LastEditTime: 2022-03-24 17:26:19
+ * @LastEditTime: 2022-05-10 13:11:50
  * @LastEditors: chenxiaoxuan
  * @Description: 
 -->
@@ -57,6 +57,7 @@ export default {
       // Object.freeze(viewer)
       viewer.scene.backgroundColor = Cesium.Color.TRANSPARENT
       viewer._cesiumWidget._creditContainer.style.display = 'none' //去掉logo
+      viewer.scene.globe.depthTestAgainstTerrain = true;  //开启地形检测，若不开启地形检测，导致3dtiles模型始终悬浮在地形之上，在调整数字地球视角的时候，会导致3dtiles模型的位置有偏移
       let Dora = {
         viewer: viewer,
         Cesium: Cesium
