@@ -1,7 +1,7 @@
 <!--
  * @Author: chenxiaoxuan
  * @Date: 2022-01-17 13:35:46
- * @LastEditTime: 2022-05-10 16:59:40
+ * @LastEditTime: 2022-10-13 16:38:52
  * @LastEditors: chenxiaoxuan
  * @Description: 
 -->
@@ -64,8 +64,9 @@ export default {
     const test3dtileset = new dora.Cesium.Cesium3DTileset({
       //地址可以为本地地址，或者网络地址，网络地址可能出现跨域问题，建议用nginx服务做跨域处理
       url: "../../static/3D/裁切数据转3dt/tileset.json",
-      maximunScreenSpaceError: 2,  //最大的屏幕空间误差
-      maximumNumberOfLoadedTiles: 1000,  //最大加载瓦片个数
+      // url: "http://earthsdk.com/v/last/Apps/assets/dayanta/tileset.json",
+      // maximunScreenSpaceError: 2,  //最大的屏幕空间误差
+      // maximumNumberOfLoadedTiles: 1000,  //最大加载瓦片个数
       // classificationType: dora.Cesium.ClassificationType.BOTH //需要2个tileset，一个设置这个值，一个不设置，设置了的话，有其他3dtileset的时候，这个tileset会贴。
     })
     dora.viewer.scene.primitives.add(test3dtileset);

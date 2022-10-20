@@ -1,7 +1,7 @@
 <!--
  * @Author: chenxiaoxuan
  * @Date: 2022-01-17 13:38:14
- * @LastEditTime: 2022-03-29 16:14:34
+ * @LastEditTime: 2022-10-20 16:35:53
  * @LastEditors: chenxiaoxuan
  * @Description: 
 -->
@@ -21,7 +21,7 @@
         :key="tool.id"
         :index="tool.id"
       >
-        <template slot="title"><span>{{tool.label}}</span></template>
+        <template slot="title"><span style="color: white">{{tool.label}}</span></template>
         <div v-if="tool.children">
             <div v-for="(subitem, subindex) in tool.children" :key="subindex">
               <el-menu-item style="list-style-type: none" :index="subitem.code" @click="handleOpenTool(subitem)">{{subitem.label}}</el-menu-item>
@@ -29,18 +29,24 @@
         </div>
       </el-submenu>
     </el-menu>
-    <remark></remark>
+    <remark v-show="remarkshow"></remark>
+    <VisibilityAnalysis v-show="vaShow"></VisibilityAnalysis>
+    <SkylineAnalysis v-show="saShow"></SkylineAnalysis>
   </div>
 </template>
 
 <script>
 import { dora } from '@/utils/doraManager';
 import Remark from './Remark/Remark';
-
+import VisibilityAnalysis from './VisibilityAnalysis/VisibilityAnalysis';
+import SkylineAnalysis from './SkylineAnalysis/SkylineAnalysis';
 export default {
   data() {
     return {
-      collapsed: false
+      collapsed: false,
+      remarkshow: false,
+      vaShow: false,
+      saShow: false
     }
   },
   props: {
@@ -52,7 +58,9 @@ export default {
     }
   },
   components: {
-    Remark
+    Remark,
+    VisibilityAnalysis,
+    SkylineAnalysis
   },
   provide() {
     return {
@@ -66,7 +74,13 @@ export default {
     handleClose() {},
     handleOpenTool(subitem) {
       console.log(subitem.code);
-      
+      if (subitem.label === "标注") {
+        this.remarkshow = !this.remarkshow;
+      } else if (subitem.label === "通视分析") {
+        this.vaShow = !this.vaShow;
+      } else if (subitem.label === "天际线分析") {
+        this.saShow = !this.saShow;
+      }
     }
   }
 }
@@ -78,5 +92,6 @@ export default {
     height: 100%;
     position: relative;
     top: 2rem;
+    width: 25vmin;
   }
 </style>

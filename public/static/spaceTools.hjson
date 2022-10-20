@@ -18,6 +18,21 @@
         "label": "标注",
         "code": "3",
         "url": "/Remark/index"
+      },
+      {
+        "label": "卷帘",
+        "code": "4",
+        "url": "/"
+      },
+      {
+        "label": "通视分析",
+        "code": "5",
+        "url": "/"
+      },
+      {
+        "label": "天际线分析",
+        "code": "6",
+        "url": "/"
       }
     ]
   }

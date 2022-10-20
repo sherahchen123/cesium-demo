@@ -1,7 +1,7 @@
 <!--
  * @Author: chenxiaoxuan
  * @Date: 2021-09-07 09:28:03
- * @LastEditTime: 2022-05-10 13:11:50
+ * @LastEditTime: 2022-10-13 17:24:48
  * @LastEditors: chenxiaoxuan
  * @Description: 
 -->
@@ -63,6 +63,7 @@ export default {
         Cesium: Cesium
       }
       setDora(Dora)
+      console.log("version", Dora.Cesium.VERSION)
       this.getLayerTree();
       this.getConfig();
       let str = "http://52.82.98.186:6080/arcgis/rest/services/YZT/YX2014/MapServer";

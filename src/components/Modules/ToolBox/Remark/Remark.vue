@@ -1,19 +1,20 @@
 <!--
  * @Author: chenxiaoxuan
  * @Date: 2022-03-29 15:04:19
- * @LastEditTime: 2022-05-10 15:11:34
+ * @LastEditTime: 2022-10-13 15:12:34
  * @LastEditors: chenxiaoxuan
  * @Description: 
 -->
 <template>
   <div class="remark">
-    <div>标注渲染</div>
+    <div style="color: white">标注渲染</div>
     <button @click="point">point</button>
     <button @click="label">label</button>
     <button @click="billboard">billboard</button>
     <button @click="model">model</button>
     <button @click="polyline">polyline</button>
     <button @click="entityWithMaterial">entityWithMaterial</button>
+    <button @click="clearAll">清除所有标注</button>
   </div>  
 </template>
 
@@ -27,7 +28,7 @@ import {
   creatPolyline,
   createBoxWithImageMaterial
 } from "@/utils/entity.js";
-
+let entityCollection = [];
 export default {
   data() {
     return {
@@ -72,6 +73,7 @@ export default {
     point() {
       const en = creatPoint(dora, this.cartesian3, this.pointStyle);
       dora.viewer.flyTo(en);
+      entityCollection.push(en);
     },
     label() {
       const en = creatLabel(dora, this.cartesian3, {
@@ -79,6 +81,7 @@ export default {
         ...this.labelStyle,
       });
       dora.viewer.flyTo(en);
+      entityCollection.push(en);
     },
     billboard() {
       const en = creatBillboard(dora, this.cartesian3, {
@@ -86,22 +89,32 @@ export default {
         ...this.billBoardStyle,
       });
       dora.viewer.flyTo(en);
+      entityCollection.push(en);
     },
     model() {
-      creatModel(dora, this.modelC3, {
+      const en = creatModel(dora, this.modelC3, {
         ...this.pointStyle,
         ...this.modelStyle,
       });
+      entityCollection.push(en);
     },
     polyline() {
-      creatPolyline(dora, this.polylineC3s, {
+      const en = creatPolyline(dora, this.polylineC3s, {
         ...this.pointStyle,
         ...this.modelStyle,
       });
+      entityCollection.push(en);
     },
     entityWithMaterial() {
       const en = createBoxWithImageMaterial(dora, this.imageMaterial);
       dora.viewer.flyTo(en);
+      entityCollection.push(en);
+    },
+    clearAll() {
+      entityCollection.map(entity => {
+        dora.viewer.entities.removeById(entity.id);
+      });
+      // dora.viewer.entities.removeAll();
     }
   }
 }
