@@ -1,7 +1,7 @@
 <!--
  * @Author: chenxiaoxuan
  * @Date: 2021-09-07 09:28:03
- * @LastEditTime: 2022-10-13 17:24:48
+ * @LastEditTime: 2022-10-26 18:01:48
  * @LastEditors: chenxiaoxuan
  * @Description: 
 -->
@@ -53,11 +53,28 @@ export default {
   },
   methods: {
     initCesium() {
-      viewer = new Cesium.Viewer('cesiumContainer', {})
+      viewer = new Cesium.Viewer('cesiumContainer', {
+        animation: false, //是否显示动画控件
+        timeline: false, //是否显示时间线控件
+        // fullscreenButton: false, //全屏按钮
+        // sceneModePicker: false, //是否显示投影方式控件
+        navigationHelpButton: false, //是否显示帮助信息控件
+        shouldAnimate: true,// 设置自动循环，在使用czml数据加载小汽车动态数据时使用到
+        navigation: false,
+        // infoBox:false,   右上角弹出的信息框
+      })
       // Object.freeze(viewer)
       viewer.scene.backgroundColor = Cesium.Color.TRANSPARENT
       viewer._cesiumWidget._creditContainer.style.display = 'none' //去掉logo
       viewer.scene.globe.depthTestAgainstTerrain = true;  //开启地形检测，若不开启地形检测，导致3dtiles模型始终悬浮在地形之上，在调整数字地球视角的时候，会导致3dtiles模型的位置有偏移
+      // 地形半透明
+      viewer.scene.undergroundMode = true;
+      viewer.scene.globe.globeAlpha = 0.5;
+      // 去掉裙边
+      viewer.scene.terrainProvider.isCreateSkirt = false; 
+       //改变天空颜色
+      viewer.scene.backgroundColor = new Cesium.Color(112 / 255, 128 / 255, 144 / 255, 1.0);/* 112 128 144*/
+      viewer.scene.globe.cullEnable = false;
       let Dora = {
         viewer: viewer,
         Cesium: Cesium

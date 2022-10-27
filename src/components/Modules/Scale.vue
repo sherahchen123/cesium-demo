@@ -1,7 +1,7 @@
 <!--
  * @Author: chenxiaoxuan
  * @Date: 2022-01-17 13:35:46
- * @LastEditTime: 2022-10-13 16:38:52
+ * @LastEditTime: 2022-10-26 17:51:04
  * @LastEditors: chenxiaoxuan
  * @Description: 
 -->
@@ -61,33 +61,34 @@ export default {
       //   console.log('中键按下事件：', click.position);     
       // },dora.Cesium.ScreenSpaceEventType.MIDDLE_DOWN);
     })
-    const test3dtileset = new dora.Cesium.Cesium3DTileset({
-      //地址可以为本地地址，或者网络地址，网络地址可能出现跨域问题，建议用nginx服务做跨域处理
-      url: "../../static/3D/裁切数据转3dt/tileset.json",
-      // url: "http://earthsdk.com/v/last/Apps/assets/dayanta/tileset.json",
-      // maximunScreenSpaceError: 2,  //最大的屏幕空间误差
-      // maximumNumberOfLoadedTiles: 1000,  //最大加载瓦片个数
-      // classificationType: dora.Cesium.ClassificationType.BOTH //需要2个tileset，一个设置这个值，一个不设置，设置了的话，有其他3dtileset的时候，这个tileset会贴。
-    })
-    dora.viewer.scene.primitives.add(test3dtileset);
-    //根据地形设置高度
-    let height = 5000;
-    test3dtileset.readyPromise.then(function(test3dtileset) {
-      //贴地
-      const cartographic = dora.Cesium.Cartographic.fromCartesian(test3dtileset.boundingSphere.center);
-      const surface = dora.Cesium.Cartesian3.fromRadians(cartographic.longitude, cartographic.latitude, cartographic.height);
-      const offset = dora.Cesium.Cartesian3.fromRadians(cartographic.longitude, cartographic.latitude, cartographic.height + height);
-      //平移矩阵必须相减，才能得到贴面的模型
-      const translation = dora.Cesium.Cartesian3.subtract(offset, surface, new dora.Cesium.Cartesian3());
-      test3dtileset.modelMatrix = dora.Cesium.Matrix4.fromTranslation(translation);
-      //定位到模型
-      //const boundingSphereCenter = test3dtileset.boundingSphere.center;
-      dora.viewer.zoomTo(
-        test3dtileset,
-        //cesium方位角，可以试着调节参数掌握api的使用
-        new dora.Cesium.HeadingPitchRange(0.0, -0.5, test3dtileset.boundingSphere.radius * 4.0)
-      )
-    })
+    // const test3dtileset = new dora.Cesium.Cesium3DTileset({
+    //   //地址可以为本地地址，或者网络地址，网络地址可能出现跨域问题，建议用nginx服务做跨域处理
+    //   // url: "../../static/3D/裁切数据转3dt/tileset.json",
+    //   url: 'http://52.83.134.236:8090/testData/DYT/tileset.json',
+    //   // url: "http://earthsdk.com/v/last/Apps/assets/dayanta/tileset.json",
+    //   // maximunScreenSpaceError: 2,  //最大的屏幕空间误差
+    //   // maximumNumberOfLoadedTiles: 1000,  //最大加载瓦片个数
+    //   // classificationType: dora.Cesium.ClassificationType.BOTH //需要2个tileset，一个设置这个值，一个不设置，设置了的话，有其他3dtileset的时候，这个tileset会贴。
+    // })
+    // dora.viewer.scene.primitives.add(test3dtileset);
+    // //根据地形设置高度
+    // let height = 6330;
+    // test3dtileset.readyPromise.then(function(test3dtileset) {
+    //   //贴地
+    //   const cartographic = dora.Cesium.Cartographic.fromCartesian(test3dtileset.boundingSphere.center);
+    //   const surface = dora.Cesium.Cartesian3.fromRadians(cartographic.longitude, cartographic.latitude, cartographic.height);
+    //   const offset = dora.Cesium.Cartesian3.fromRadians(cartographic.longitude, cartographic.latitude, cartographic.height + height);
+    //   //平移矩阵必须相减，才能得到贴面的模型
+    //   const translation = dora.Cesium.Cartesian3.subtract(offset, surface, new dora.Cesium.Cartesian3());
+    //   test3dtileset.modelMatrix = dora.Cesium.Matrix4.fromTranslation(translation);
+    //   //定位到模型
+    //   //const boundingSphereCenter = test3dtileset.boundingSphere.center;
+    //   dora.viewer.zoomTo(
+    //     test3dtileset,
+    //     //cesium方位角，可以试着调节参数掌握api的使用
+    //     new dora.Cesium.HeadingPitchRange(0.0, -0.5, test3dtileset.boundingSphere.radius * 4.0)
+    //   )
+    // })
     //通过指定经纬高度调整模型位置
     // const longitude = 116.3908443995411;
     // const latitude = 39.91600579431837;

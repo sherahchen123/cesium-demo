@@ -1,7 +1,7 @@
 /*
  * @Author: chenxiaoxuan
  * @Date: 2021-09-07 09:28:03
- * @LastEditTime: 2021-09-10 14:37:22
+ * @LastEditTime: 2022-10-26 17:03:00
  * @LastEditors: chenxiaoxuan
  * @Description: 
  */
@@ -12,9 +12,10 @@ import App from './App'
 import router from './router'
 import ElementUI from 'element-ui';
 
-// import '@supermap/vue-iclient3d-webgl/dist/styles/vue-iclient3d-webgl.min.css'
-// import VueiClient from '@supermap/vue-iclient3d-webgl'
-// Vue.use(VueiClient)
+// import '@supermap/vue-iclient3d-webgl/dist/styles/vue-iclient3d-webgl.min.css';
+// import VueiClient from '@supermap/vue-iclient3d-webgl';
+
+// Vue.use(VueiClient);
 Vue.use(ElementUI);
 Vue.config.productionTip = false
 
