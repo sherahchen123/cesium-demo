@@ -1,7 +1,7 @@
 <!--
  * @Author: chenxiaoxuan
  * @Date: 2022-01-17 13:38:14
- * @LastEditTime: 2022-10-20 16:35:53
+ * @LastEditTime: 2022-10-27 11:00:10
  * @LastEditors: chenxiaoxuan
  * @Description: 
 -->
@@ -32,6 +32,7 @@
     <remark v-show="remarkshow"></remark>
     <VisibilityAnalysis v-show="vaShow"></VisibilityAnalysis>
     <SkylineAnalysis v-show="saShow"></SkylineAnalysis>
+    <ShadowAnalysis v-show="shadowShow" style="width: 40vmin; position: absolute; right: 0vmin;"></ShadowAnalysis>
   </div>
 </template>
 
@@ -40,13 +41,15 @@ import { dora } from '@/utils/doraManager';
 import Remark from './Remark/Remark';
 import VisibilityAnalysis from './VisibilityAnalysis/VisibilityAnalysis';
 import SkylineAnalysis from './SkylineAnalysis/SkylineAnalysis';
+import ShadowAnalysis from './ShadowAnalysis/ShadowAnalysis';
 export default {
   data() {
     return {
       collapsed: false,
       remarkshow: false,
       vaShow: false,
-      saShow: false
+      saShow: false,
+      shadowShow: false
     }
   },
   props: {
@@ -60,7 +63,8 @@ export default {
   components: {
     Remark,
     VisibilityAnalysis,
-    SkylineAnalysis
+    SkylineAnalysis,
+    ShadowAnalysis
   },
   provide() {
     return {
@@ -80,6 +84,8 @@ export default {
         this.vaShow = !this.vaShow;
       } else if (subitem.label === "天际线分析") {
         this.saShow = !this.saShow;
+      } else if (subitem.label === "阴影分析") {
+        this.shadowShow = !this.shadowShow;
       }
     }
   }
