@@ -1,7 +1,7 @@
 <!--
  * @Author: chenxiaoxuan
  * @Date: 2021-09-07 09:28:03
- * @LastEditTime: 2022-10-26 18:01:48
+ * @LastEditTime: 2022-11-07 13:47:36
  * @LastEditors: chenxiaoxuan
  * @Description: 
 -->
@@ -86,6 +86,9 @@ export default {
       let str = "http://52.82.98.186:6080/arcgis/rest/services/YZT/YX2014/MapServer";
       let num = str.indexOf("MapServer")
       console.log(num)
+      let arr = [[1,2,3], [2]];
+      arr.push([2,1,4]);
+      console.log("arr push后", arr);
       // console.log(layer1)
     },
     async getLayerTree() {

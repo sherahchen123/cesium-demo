@@ -1,9 +1,9 @@
 /*
  * @Author: chenxiaoxuan
  * @Date: 2022-03-29 15:14:39
- * @LastEditTime: 2022-05-10 16:30:39
+ * @LastEditTime: 2022-11-10 16:18:52
  * @LastEditors: chenxiaoxuan
- * @Description: 
+ * @Description:
  */
 export const creatPoint = (dora, position, style) => {
   const { color = '#DC143C', pixelSize } = style;
@@ -50,14 +50,15 @@ export const creatBillboard = (dora, position, style) => {
       pixelSize: pixelSize
     },
     label: {
-      text: "1",  scale: 0.5,
+      text: '1',
+      scale: 0.5
     },
     billboard: {
       image: url,
       scale: scale,
       pixelOffset: new dora.Cesium.Cartesian2(0, -35),
-      color: dora.Cesium.Color.fromCssColorString("rgba(255,0,0,1)"),
-      show:false
+      color: dora.Cesium.Color.fromCssColorString('rgba(255,0,0,1)'),
+      show: false
     }
   });
   return ren;
@@ -129,27 +130,29 @@ export const creatPolygon = (dora, position) => {
   return ren;
 };
 //primitive贴地点，sampleTerrainMostDetailed方法实现点位置添加高程实现贴地
-export const createPrimitivePoint = (dora) => {
-  var cartesian=dora.Cesium.Cartesian3.fromDegrees(100,20)//这里没设置点的高度，也可以设置高度，但不知道该位置的高程，所以需要使用sampleTerrainMostDetailed方法在地形加载出来后，将该点位置赋予高程
-	var points = dora.viewer.scene.primitives.add(new dora.Cesium.PointPrimitiveCollection())
-	var ellipsoid = dora.viewer.scene.globe.ellipsoid
-	let p = ellipsoid.cartesianToCartographic(cartesian)
-  let promise = dora.Cesium.sampleTerrainMostDetailed(window.viewer.terrainProvider, [p])
+export const createPrimitivePoint = dora => {
+  var cartesian = dora.Cesium.Cartesian3.fromDegrees(100, 20); //这里没设置点的高度，也可以设置高度，但不知道该位置的高程，所以需要使用sampleTerrainMostDetailed方法在地形加载出来后，将该点位置赋予高程
+  var points = dora.viewer.scene.primitives.add(new dora.Cesium.PointPrimitiveCollection());
+  var ellipsoid = dora.viewer.scene.globe.ellipsoid;
+  let p = ellipsoid.cartesianToCartographic(cartesian);
+  let promise = dora.Cesium.sampleTerrainMostDetailed(window.viewer.terrainProvider, [p]);
   dora.Cesium.when(promise, function() {
     points.add({
       position: dora.Cesium.Cartographic.toCartesian(p),
       color: dora.Cesium.Color.WHITE,
       pixelSize: 10
-    })
-  })
+    });
+  });
 };
 //primitive贴地线, GroundPolylinePrimitive贴地线
-export const createPrimitiveLine = (dora) => {
+export const createPrimitiveLine = dora => {
   let ren = dora.viewer.scene.primitive.add(
-    new dora.Cesium.GroundPolylinePrimitive({//贴地primitive线
+    new dora.Cesium.GroundPolylinePrimitive({
+      //贴地primitive线
       geometryInstances: new dora.Cesium.GeometryInstance({
-        geometry: new dora.Cesium.GroundPolylineGeometry({//贴地线几何
-          positions:dora.Cesium.Cartesian3.fromDegreesArray([90, 28, 100, 28])
+        geometry: new dora.Cesium.GroundPolylineGeometry({
+          //贴地线几何
+          positions: dora.Cesium.Cartesian3.fromDegreesArray([90, 28, 100, 28])
         })
       }),
       appearance: new dora.Cesium.PolylineMaterialAppearance({
@@ -158,16 +161,18 @@ export const createPrimitiveLine = (dora) => {
         })
       })
     })
-  )
+  );
   return ren;
 };
 //GroundPrimitive实现贴地几何形状, CircleGeometry，CorridorGeometry，EllipseGeometry，PolygonGeometry，和RectangleGeometry
-export const createPrimitiveGround = (dora) => {
-  var primitive = new dora.Cesium.GroundPrimitive({//贴地的primitive
+export const createPrimitiveGround = dora => {
+  var primitive = new dora.Cesium.GroundPrimitive({
+    //贴地的primitive
     geometryInstances: new dora.Cesium.GeometryInstance({
-      geometry: new dora.Cesium.PolygonGeometry({//支持CircleGeometry，CorridorGeometry，EllipseGeometry，RectangleGeometry
+      geometry: new dora.Cesium.PolygonGeometry({
+        //支持CircleGeometry，CorridorGeometry，EllipseGeometry，RectangleGeometry
         polygonHierarchy: new dora.Cesium.PolygonHierarchy([
-          dora.Cesium.Cartesian3.fromDegreesArray(100,25,100,30,110,30)
+          dora.Cesium.Cartesian3.fromDegreesArray(100, 25, 100, 30, 110, 30)
         ])
       }),
       attributes: {
@@ -175,71 +180,221 @@ export const createPrimitiveGround = (dora) => {
       }
     }),
     appearance: new dora.Cesium.PerInstanceColorAppearance()
-  })
+  });
   let ren = dora.viewer.scene.primitives.add(primitive);
   return ren;
 };
 //ClassificationPrimitive可实现贴地或贴模型，包括BoxGeometry、CylinderGeometry、EllipsoidGeometry、PolylineVolumeGeometry、SphereGeometry几何形状。
-export const createPrimitiveClassification = (dora) => {
+export const createPrimitiveClassification = dora => {
   dora.viewer.scene.primitives.add(
     new dora.Cesium.ClassificationPrimitive({
       geometryInstances: new dora.Cesium.GeometryInstance({
         geometry: dora.Cesium.BoxGeometry.fromDimensions({
           vertexFormat: dora.Cesium.PerInstanceColorAppearance.VERTEX_FORMAT,
-          dimensions: new dora.Cesium.Cartesian3(8.0, 5.0, 8.0),
+          dimensions: new dora.Cesium.Cartesian3(8.0, 5.0, 8.0)
         }),
         // modelMatrix: modelMatrix,
         attributes: {
           color: dora.Cesium.ColorGeometryInstanceAttribute.fromColor(
             new dora.Cesium.Color(1.0, 0.0, 0.0, 0.5)
           ),
-          show: new dora.Cesium.ShowGeometryInstanceAttribute(true),
+          show: new dora.Cesium.ShowGeometryInstanceAttribute(true)
         },
-        id: "volume",
+        id: 'volume'
       }),
-      classificationType: dora.Cesium.ClassificationType.CESIUM_3D_TILE,
+      classificationType: dora.Cesium.ClassificationType.CESIUM_3D_TILE
     })
   );
+};
+//可以实时更新的primitive
+export class createPolygonGeometry1 {
+  constructor(dora, points = [], params = {}) {
+    this.positions = points;
+    this.dora = dora;
+    this.params = params;
+  }
+  getGeometry() {
+    const { width = 1, vertexFormat = 'DEFAULT', isClamp = true } = this.params;
+    let type = vertexFormat;
+    if (typeof type === 'string') {
+      type = getVertexFormatType(this.dora, vertexFormat);
+    }
+    let polyline = null;
+    if (isClamp) {
+      polyline = new this.dora.Cesium.GroundPolylineGeometry({
+        positions: this.positions,
+        width: width,
+        ...this.params
+      });
+    } else {
+      polyline = new this.dora.Cesium.PolylineGeometry({
+        positions: this.positions,
+        width: width,
+        vertexFormat: type,
+        ...this.params
+      });
+    }
+    return polyline;
+  }
+  update(context, frameState, commandList) {
+    const geometry = this.getGeometry();
+    if (!geometry) {
+      return;
+    }
+
+    this._primitive = new this.dora.Cesium.Primitive({
+      geometryInstances: new this.dora.Cesium.GeometryInstance({
+        geometry: geometry,
+        id: '111'
+      }),
+      releaseGeometryInstances: false,
+      appearance: new this.dora.Cesium.PolylineMaterialAppearance({
+        aboveGround: true
+    }),
+      asynchronous: false
+    });
+    const primitive = this._primitive;
+
+    primitive.update(context, frameState, commandList);
+  }
 }
+export class createPolygonGeometryCanUpdate {
+  constructor(dora, points = [], holes = [], params = {}) {
+    this.positions = points;
+    this.holes = holes;
+    this.dora = dora;
+    this.params = params;
+  }
+  getGeometry() {
+    if (!Array.isArray(this.holes)) {
+      this.params = this.holes || {};
+      this.holes = [];
+    }
+    const { vertexFormat = 'DEFAULT', isFill = true } = this.params;
+    let type = vertexFormat;
+    if (typeof type === 'string') {
+      type = getVertexFormatType(this.dora, vertexFormat);
+    }
+    const pos = new this.dora.cesium.PolygonHierarchy(this.positions, this.holes);
+    let polygon = null;
+    if (isFill) {
+      polygon = new this.dora.cesium.PolygonGeometry({
+        polygonHierarchy: pos,
+        vertexFormat: type,
+        ...this.params,
+      });
+    } else {
+      polygon = new this.dora.cesium.PolygonOutlineGeometry({
+        polygonHierarchy: pos,
+        vertexFormat: type,
+        ...this.params,
+      });
+    }
+    return polygon;
+  }
+  update(context, frameState, commandList) {
+    const geometry = this.getGeometry();
+    if (!geometry) {
+      return;
+    }
+
+    this._primitive = new this.dora.cesium.GroundPrimitive({
+      geometryInstances: new this.dora.cesium.GeometryInstance({
+        geometry: geometry,
+        id: '111',
+      }),
+      releaseGeometryInstances: false,
+      appearance: new this.dora.cesium.MaterialAppearance({
+        aboveGround: true,
+      }),
+      asynchronous: false,
+    });
+    const primitive = this._primitive;
+
+    primitive.update(context, frameState, commandList);
+  }
+  destroy() {
+    this.dora = null;
+    this.positions = null;
+    this.params = null;
+    this._primitive = null;
+  }
+}
+const getVertexFormatType = (dora, type) => {
+  return dora.Cesium.VertexFormat[type];
+};
 export const createBoxWithImageMaterial = (dora, imageMaterial) => {
   dora.viewer.entities.add({
-    id: "test0",
-    wall:{
-      positions:dora.Cesium.Cartesian3.fromDegreesArrayHeights([112, 40,90, 112.001, 40,90]),
-      material:new dora.Cesium.ImageMaterialProperty({image:imageMaterial,transparent:false,repeat: new dora.Cesium.Cartesian2(4, 4)})
-    }
-    
-  });
-  dora.viewer.entities.add({
-    id: "test1",
-    wall:{
-      positions:dora.Cesium.Cartesian3.fromDegreesArrayHeights([112.001, 40,90, 112.001, 40.001,90]),
-      material:new dora.Cesium.ImageMaterialProperty({image:imageMaterial,color: dora.Cesium.Color.BLUE,transparent:false,repeat: new dora.Cesium.Cartesian2(4, 4)})
+    id: 'test0',
+    wall: {
+      positions: dora.Cesium.Cartesian3.fromDegreesArrayHeights([112, 40, 90, 112.001, 40, 90]),
+      material: new dora.Cesium.ImageMaterialProperty({
+        image: imageMaterial,
+        transparent: false,
+        repeat: new dora.Cesium.Cartesian2(4, 4)
+      })
     }
   });
   dora.viewer.entities.add({
-    id: "test2",
-    wall:{
-      positions:dora.Cesium.Cartesian3.fromDegreesArrayHeights([112.001, 40.001,90, 112, 40.001,90]),
-      material:new dora.Cesium.ImageMaterialProperty({image:imageMaterial,transparent:false,repeat: new dora.Cesium.Cartesian2(4, 4)})
+    id: 'test1',
+    wall: {
+      positions: dora.Cesium.Cartesian3.fromDegreesArrayHeights([112.001, 40, 90, 112.001, 40.001, 90]),
+      material: new dora.Cesium.ImageMaterialProperty({
+        image: imageMaterial,
+        color: dora.Cesium.Color.BLUE,
+        transparent: false,
+        repeat: new dora.Cesium.Cartesian2(4, 4)
+      })
     }
   });
   dora.viewer.entities.add({
-    id: "test3",
-    wall:{
-      positions:dora.Cesium.Cartesian3.fromDegreesArrayHeights([112, 40.001,90, 112, 40,90]),
-      material:new dora.Cesium.ImageMaterialProperty({image:imageMaterial,transparent:false,repeat: new dora.Cesium.Cartesian2(4, 4)})
+    id: 'test2',
+    wall: {
+      positions: dora.Cesium.Cartesian3.fromDegreesArrayHeights([112.001, 40.001, 90, 112, 40.001, 90]),
+      material: new dora.Cesium.ImageMaterialProperty({
+        image: imageMaterial,
+        transparent: false,
+        repeat: new dora.Cesium.Cartesian2(4, 4)
+      })
     }
   });
-  
+  dora.viewer.entities.add({
+    id: 'test3',
+    wall: {
+      positions: dora.Cesium.Cartesian3.fromDegreesArrayHeights([112, 40.001, 90, 112, 40, 90]),
+      material: new dora.Cesium.ImageMaterialProperty({
+        image: imageMaterial,
+        transparent: false,
+        repeat: new dora.Cesium.Cartesian2(4, 4)
+      })
+    }
+  });
+
   let ren = dora.viewer.entities.add({
-    id: "top",
-    polygon:{
-      hierarchy:dora.Cesium.Cartesian3.fromDegreesArrayHeights([112, 40,90, 112.001, 40,90,112.001, 40.001,90,112, 40.001,90]),
-      material:new dora.Cesium.ImageMaterialProperty({image:imageMaterial,transparent:false,repeat: new dora.Cesium.Cartesian2(4, 4)}),
-      perPositionHeight:true
+    id: 'top',
+    polygon: {
+      hierarchy: dora.Cesium.Cartesian3.fromDegreesArrayHeights([
+        112,
+        40,
+        90,
+        112.001,
+        40,
+        90,
+        112.001,
+        40.001,
+        90,
+        112,
+        40.001,
+        90
+      ]),
+      material: new dora.Cesium.ImageMaterialProperty({
+        image: imageMaterial,
+        transparent: false,
+        repeat: new dora.Cesium.Cartesian2(4, 4)
+      }),
+      perPositionHeight: true
     }
   });
 
   return ren;
-}
+};

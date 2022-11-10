@@ -1,7 +1,7 @@
 <!--
  * @Author: chenxiaoxuan
  * @Date: 2022-01-17 13:38:14
- * @LastEditTime: 2022-10-27 11:00:10
+ * @LastEditTime: 2022-11-02 10:49:30
  * @LastEditors: chenxiaoxuan
  * @Description: 
 -->
@@ -33,6 +33,7 @@
     <VisibilityAnalysis v-show="vaShow"></VisibilityAnalysis>
     <SkylineAnalysis v-show="saShow"></SkylineAnalysis>
     <ShadowAnalysis v-show="shadowShow" style="width: 40vmin; position: absolute; right: 0vmin;"></ShadowAnalysis>
+    <HeightLimitAnalysis v-show="hlshow"></HeightLimitAnalysis>
   </div>
 </template>
 
@@ -42,6 +43,7 @@ import Remark from './Remark/Remark';
 import VisibilityAnalysis from './VisibilityAnalysis/VisibilityAnalysis';
 import SkylineAnalysis from './SkylineAnalysis/SkylineAnalysis';
 import ShadowAnalysis from './ShadowAnalysis/ShadowAnalysis';
+import HeightLimitAnalysis from './HeightLimitAnalysis/HeightLimitAnalysis';
 export default {
   data() {
     return {
@@ -49,7 +51,8 @@ export default {
       remarkshow: false,
       vaShow: false,
       saShow: false,
-      shadowShow: false
+      shadowShow: false,
+      hlshow: false
     }
   },
   props: {
@@ -64,7 +67,8 @@ export default {
     Remark,
     VisibilityAnalysis,
     SkylineAnalysis,
-    ShadowAnalysis
+    ShadowAnalysis,
+    HeightLimitAnalysis
   },
   provide() {
     return {
@@ -86,6 +90,8 @@ export default {
         this.saShow = !this.saShow;
       } else if (subitem.label === "阴影分析") {
         this.shadowShow = !this.shadowShow;
+      } else if (subitem.label === "限高分析") {
+        this.hlshow = !this.hlshow;
       }
     }
   }
