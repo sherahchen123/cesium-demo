@@ -1,7 +1,7 @@
 <!--
  * @Author: chenxiaoxuan
  * @Date: 2022-01-17 13:38:14
- * @LastEditTime: 2022-11-02 10:49:30
+ * @LastEditTime: 2022-11-16 22:56:57
  * @LastEditors: chenxiaoxuan
  * @Description: 
 -->
@@ -11,21 +11,24 @@
       mode="horizontal"
       background-color="rgb(122, 126, 147)"
       text-color="#fff"
-      @open="handleOpen" 
-      @close="handleClose" 
-      :collapse="collapsed" 
+      @open="handleOpen"
+      @close="handleClose"
+      :collapse="collapsed"
       ref="rightNavigation"
-      style="list-style-type: none">
-      <el-submenu
-        v-for="tool in tools" 
-        :key="tool.id"
-        :index="tool.id"
-      >
-        <template slot="title"><span style="color: white">{{tool.label}}</span></template>
+      style="list-style-type: none"
+    >
+      <el-submenu v-for="tool in tools" :key="tool.id" :index="tool.id">
+        <template slot="title">
+          <span style="color: white">{{tool.label}}</span>
+        </template>
         <div v-if="tool.children">
-            <div v-for="(subitem, subindex) in tool.children" :key="subindex">
-              <el-menu-item style="list-style-type: none" :index="subitem.code" @click="handleOpenTool(subitem)">{{subitem.label}}</el-menu-item>
-            </div>
+          <div v-for="(subitem, subindex) in tool.children" :key="subindex">
+            <el-menu-item
+              style="list-style-type: none"
+              :index="subitem.code"
+              @click="handleOpenTool(subitem)"
+            >{{subitem.label}}</el-menu-item>
+          </div>
         </div>
       </el-submenu>
     </el-menu>
@@ -34,16 +37,18 @@
     <SkylineAnalysis v-show="saShow"></SkylineAnalysis>
     <ShadowAnalysis v-show="shadowShow" style="width: 40vmin; position: absolute; right: 0vmin;"></ShadowAnalysis>
     <HeightLimitAnalysis v-show="hlshow"></HeightLimitAnalysis>
+    <lightSetting v-show="lsshow"></lightSetting>
   </div>
 </template>
 
 <script>
-import { dora } from '@/utils/doraManager';
-import Remark from './Remark/Remark';
-import VisibilityAnalysis from './VisibilityAnalysis/VisibilityAnalysis';
-import SkylineAnalysis from './SkylineAnalysis/SkylineAnalysis';
-import ShadowAnalysis from './ShadowAnalysis/ShadowAnalysis';
-import HeightLimitAnalysis from './HeightLimitAnalysis/HeightLimitAnalysis';
+import { dora } from "@/utils/doraManager";
+import Remark from "./Remark/Remark";
+import VisibilityAnalysis from "./VisibilityAnalysis/VisibilityAnalysis";
+import SkylineAnalysis from "./SkylineAnalysis/SkylineAnalysis";
+import ShadowAnalysis from "./ShadowAnalysis/ShadowAnalysis";
+import HeightLimitAnalysis from "./HeightLimitAnalysis/HeightLimitAnalysis";
+import lightSetting from "./LightSetting/lightSetting";
 export default {
   data() {
     return {
@@ -52,14 +57,15 @@ export default {
       vaShow: false,
       saShow: false,
       shadowShow: false,
-      hlshow: false
-    }
+      hlshow: false,
+      lsshow: false
+    };
   },
   props: {
-    tools:{
-      type:Array,
-      default:()=>{
-        return []
+    tools: {
+      type: Array,
+      default: () => {
+        return [];
       }
     }
   },
@@ -68,7 +74,8 @@ export default {
     VisibilityAnalysis,
     SkylineAnalysis,
     ShadowAnalysis,
-    HeightLimitAnalysis
+    HeightLimitAnalysis,
+    lightSetting
   },
   provide() {
     return {
@@ -92,18 +99,20 @@ export default {
         this.shadowShow = !this.shadowShow;
       } else if (subitem.label === "限高分析") {
         this.hlshow = !this.hlshow;
+      } else if (subitem.label === "光源设置") {
+        this.lsshow = !this.lsshow;
       }
     }
   }
-}
+};
 </script>
 
 <style scoped lang='scss'>
-  .menu {
-    float: right;
-    height: 100%;
-    position: relative;
-    top: 2rem;
-    width: 25vmin;
-  }
+.menu {
+  float: right;
+  height: 100%;
+  position: relative;
+  top: 2rem;
+  width: 25vmin;
+}
 </style>
