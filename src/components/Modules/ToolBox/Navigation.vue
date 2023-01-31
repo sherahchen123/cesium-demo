@@ -38,6 +38,7 @@
     <ShadowAnalysis v-show="shadowShow" style="width: 40vmin; position: absolute; right: 0vmin;"></ShadowAnalysis>
     <HeightLimitAnalysis v-show="hlshow"></HeightLimitAnalysis>
     <lightSetting v-show="lsshow"></lightSetting>
+    <SlopeAspectAnalysis v-show="slopeshow"></SlopeAspectAnalysis>
   </div>
 </template>
 
@@ -49,6 +50,7 @@ import SkylineAnalysis from "./SkylineAnalysis/SkylineAnalysis";
 import ShadowAnalysis from "./ShadowAnalysis/ShadowAnalysis";
 import HeightLimitAnalysis from "./HeightLimitAnalysis/HeightLimitAnalysis";
 import lightSetting from "./LightSetting/lightSetting";
+import SlopeAspectAnalysis from "./SlopeAspectAnalysis/SlopeAspectAnalysis";
 export default {
   data() {
     return {
@@ -58,7 +60,8 @@ export default {
       saShow: false,
       shadowShow: false,
       hlshow: false,
-      lsshow: false
+      lsshow: false,
+      slopeshow: false
     };
   },
   props: {
@@ -75,7 +78,8 @@ export default {
     SkylineAnalysis,
     ShadowAnalysis,
     HeightLimitAnalysis,
-    lightSetting
+    lightSetting,
+    SlopeAspectAnalysis
   },
   provide() {
     return {
@@ -101,6 +105,8 @@ export default {
         this.hlshow = !this.hlshow;
       } else if (subitem.label === "光源设置") {
         this.lsshow = !this.lsshow;
+      } else if (subitem.label === "坡度分析") {
+        this.slopeshow = !this.slopeshow;
       }
     }
   }
